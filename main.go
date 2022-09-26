@@ -24,12 +24,17 @@ func main() {
 
 	fmt.Println("chi2 = " + strconv.FormatFloat(chi, 'f', -1, 64))
 	fmt.Println("chi2(free) = " + strconv.FormatFloat(TEST_VAL, 'f', -1, 64))
+	judgement(chi)
+}
+func judgement(chi float64) bool {
 	if chi < TEST_VAL {
 		fmt.Println("有意な差があるとは言えません")
+		return false
 	} else {
 		fmt.Println("有意な差があります")
-
+		return true
 	}
+
 }
 func originalNonNext(op float64, on float64) float64 {
 	return op - on
