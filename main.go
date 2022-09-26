@@ -17,8 +17,8 @@ func main() {
 	on, _ := strconv.ParseFloat(originalNext(), 64)
 	tp, _ := strconv.ParseFloat(testParameter(), 64)
 	tn, _ := strconv.ParseFloat(testNext(), 64)
-	onn := op - on
-	tnn := tp - tn
+	onn := originalNonNext(op, on)
+	tnn := testNonNext(tp, tn)
 	a := makevar(on, onn, tn, tnn)
 	chi := sumvar(a)
 
@@ -30,8 +30,14 @@ func main() {
 		fmt.Println("有意な差があります")
 
 	}
-
 }
+func originalNonNext(op float64, on float64) float64 {
+	return op - on
+}
+func testNonNext(tp float64, tn float64) float64 {
+	return tp - tn
+}
+
 func sumvar(v [][]float64) float64 {
 	sum := 0.0
 	for _, i := range v {
@@ -59,14 +65,6 @@ func makearray(on float64, onn float64, tn float64, tnn float64) [][]float64 {
 func makeideal(on float64, onn float64, tn float64, tnn float64) [][]float64 {
 	arr := makearray(on, onn, tn, tnn)
 	return [][]float64{{arr[2][0] * arr[0][2] / arr[2][2], arr[2][1] * arr[0][2] / arr[2][2]}, {arr[2][0] * arr[1][2] / arr[2][2], arr[2][1] * arr[1][2] / arr[2][2]}}
-}
-
-func originalNonNext(op int64, on int64) int64 {
-	return op - on
-}
-
-func testNonNext(tp int64, tn int64) int64 {
-	return tp - tn
 }
 
 func originalParamter() string {
