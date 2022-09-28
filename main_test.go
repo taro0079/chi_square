@@ -166,3 +166,50 @@ func TestMakeIdeal(t *testing.T) {
 		})
 	}
 }
+
+func testMakeArray(t *testing.T) {
+	type args struct {
+		oc  float64
+		onc float64
+		tc  float64
+		tnc float64
+	}
+	a := args{oc: 100.0, onc: 900.0, tc: 200.0, tnc: 1000.0}
+	tests := []struct {
+		name string
+		args args
+		want [][]float64
+	}{
+		{
+			name: "when oc is 100, onc is 900, tc is 200, tnc is 1000",
+			args: a,
+			want: [][]float64{{100.0, 900.0, 1000.0}, {200.0, 1000.0, 1200.0}},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := makearray(tt.args.oc, tt.args.onc, tt.args.tc, tt.args.tnc)
+
+			if got[0][0] != tt.want[0][0] {
+				t.Errorf("makearray() = %v, want %v", got, tt.want)
+			}
+			if got[0][1] != tt.want[0][1] {
+				t.Errorf("makearray() = %v, want %v", got, tt.want)
+			}
+			if got[0][2] != tt.want[0][2] {
+				t.Errorf("makearray() = %v, want %v", got, tt.want)
+			}
+			if got[1][0] != tt.want[1][0] {
+				t.Errorf("makearray() = %v, want %v", got, tt.want)
+			}
+			if got[1][1] != tt.want[1][1] {
+				t.Errorf("makearray() = %v, want %v", got, tt.want)
+			}
+			if got[1][2] != tt.want[1][2] {
+				t.Errorf("makearray() = %v, want %v", got, tt.want)
+			}
+
+		})
+	}
+
+}
