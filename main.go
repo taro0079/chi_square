@@ -82,7 +82,7 @@ func originalParamter() string {
 }
 
 func originalNext() string {
-	fmt.Print("オリジナルでステップに進んだ数は？ > ")
+	fmt.Print("オリジナルのコンバージョン数は？ > ")
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	on := scanner.Text()
@@ -99,7 +99,7 @@ func testParameter() string {
 }
 
 func testNext() string {
-	fmt.Print("テストでステップに進んだ数は？ > ")
+	fmt.Print("テストのコンバージョン数は？ > ")
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	on := scanner.Text()
