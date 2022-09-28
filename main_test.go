@@ -208,6 +208,49 @@ func testMakeArray(t *testing.T) {
 			if got[1][2] != tt.want[1][2] {
 				t.Errorf("makearray() = %v, want %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func TestMakeVar(t *testing.T) {
+	type args struct {
+		oc  float64
+		onc float64
+		tc  float64
+		tnc float64
+	}
+	a := args{
+		oc:  100.0,
+		onc: 900.0,
+		tc:  200.0,
+		tnc: 2000.0,
+	}
+	tests := []struct {
+		name string
+		args args
+		want [][]float64
+	}{
+		{
+			name: "when oc is 100, onc is 900, tc is 200, tnc is 2000",
+			args: a,
+			want: [][]float64{{0.4166666667, 0.04310344828}, {0.1893939394, 0.01959247649}},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := makevar(tt.args.oc, tt.args.onc, tt.args.tc, tt.args.tnc)
+			if got[0][0]-tt.want[0][0] > 0.000001 {
+				t.Errorf("makevar() = %v, want %v", got, tt.want)
+			}
+			if got[0][1]-tt.want[0][1] > 0.000001 {
+				t.Errorf("makevar() = %v, want %v", got, tt.want)
+			}
+			if got[1][0]-tt.want[1][0] > 0.000001 {
+				t.Errorf("makevar() = %v, want %v", got, tt.want)
+			}
+			if got[1][1]-tt.want[1][1] > 0.000001 {
+				t.Errorf("makevar() = %v, want %v", got, tt.want)
+			}
 
 		})
 	}
