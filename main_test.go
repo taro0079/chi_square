@@ -124,3 +124,45 @@ func TestCalcVar(t *testing.T) {
 		})
 	}
 }
+
+func TestMakeIdeal(t *testing.T) {
+	type args struct {
+		originalConversion    float64
+		originalNonConversion float64
+		testConversion        float64
+		testNonConversion     float64
+	}
+	tests := []struct {
+		name string
+		args args
+		want [][]float64
+	}{
+		{
+			name: "when originalConversion is 100, originalNonConversion is 900, testConversion is 100, testNonConversion is 900",
+			args: args{originalConversion: 100.0, originalNonConversion: 900.0, testConversion: 200.0, testNonConversion: 2000.0},
+			want: [][]float64{{93.75, 906.25}, {206.25, 1993.75}},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := makeideal(tt.args.originalConversion, tt.args.originalNonConversion, tt.args.testConversion, tt.args.testNonConversion)
+
+			if got[0][0] != tt.want[0][0] {
+				t.Errorf("makevar() = %v, want %v", got, tt.want)
+
+			}
+
+			if got[0][1] != tt.want[0][1] {
+				t.Errorf("makevar() = %v, want %v", got, tt.want)
+			}
+
+			if got[1][0] != tt.want[1][0] {
+				t.Errorf("makevar() = %v, want %v", got, tt.want)
+			}
+
+			if got[1][1] != tt.want[1][1] {
+				t.Errorf("makevar() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
