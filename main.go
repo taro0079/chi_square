@@ -17,8 +17,8 @@ func main() {
 	on, _ := strconv.ParseFloat(originalNext(), 64)
 	tp, _ := strconv.ParseFloat(testParameter(), 64)
 	tn, _ := strconv.ParseFloat(testNext(), 64)
-	onn := originalNonNext(op, on)
-	tnn := testNonNext(tp, tn)
+	onn := originalNonConversion(op, on)
+	tnn := testNonConversion(tp, tn)
 	a := makevar(on, onn, tn, tnn)
 	chi := sumvar(a)
 
@@ -36,10 +36,10 @@ func judgement(chi float64) bool {
 	}
 
 }
-func originalNonNext(op float64, on float64) float64 {
+func originalNonConversion(op float64, on float64) float64 {
 	return op - on
 }
-func testNonNext(tp float64, tn float64) float64 {
+func testNonConversion(tp float64, tn float64) float64 {
 	return tp - tn
 }
 
