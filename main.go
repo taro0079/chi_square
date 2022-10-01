@@ -26,6 +26,7 @@ func main() {
 	fmt.Println("chi2(free) = " + strconv.FormatFloat(TEST_VAL, 'f', -1, 64))
 	judgement(chi)
 }
+
 func judgement(chi float64) bool {
 	if chi < TEST_VAL {
 		fmt.Println("有意な差があるとは言えません")
