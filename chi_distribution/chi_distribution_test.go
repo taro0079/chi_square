@@ -31,30 +31,29 @@ func TestChiDist(t *testing.T) {
 	}
 }
 
-func TestXGen(t *testing.T){
-	type args struct{
+func TestXGen(t *testing.T) {
+	type args struct {
 		start float64
-		end float64
-		num int
+		end   float64
+		num   int
 	}
 
-
-	tests := []struct{
+	tests := []struct {
 		name string
 		args args
 		want args
 	}{
 		{
 			name: "generate x array",
-			args: args{start: 0.0,end: 100.0,num: 1000},
-			want: args{start: 0.0,end:100.0,num:1000},
+			args: args{start: 0.0, end: 100.0, num: 1000},
+			want: args{start: 0.0, end: 100.0, num: 1000},
 		},
 	}
-	for _,tt := range tests {
-		t.Run(tt.name, func(t *testing.T){
-			got:=xGen(tt.args.start,tt.args.end,tt.args.num)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := xGen(tt.args.start, tt.args.end, tt.args.num)
 
-			if got[0] != tt.want.start{
+			if got[0] != tt.want.start {
 				t.Errorf("xGen() = %v, want %v", got, tt.want)
 			}
 
